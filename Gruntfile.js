@@ -23,6 +23,7 @@ module.exports = function(grunt)
   // Project configuration.
   grunt.initConfig({
     pkg: pkg,
+
     // Plugins configuration
     clean:
     {
@@ -30,20 +31,6 @@ module.exports = function(grunt)
 
       'browser': DIST_DIR,
       'code': 'lib'
-    },
-
-    // Generate documentation
-    jsdoc:
-    {
-      all:
-      {
-        src: [
-          'README.md',
-          'lib/**/*.js',
-          'test/*.js'
-        ],
-        dest: 'doc/jsdoc'
-      }
     },
 
     // Check if Kurento Module Creator exists
@@ -57,19 +44,17 @@ module.exports = function(grunt)
       }
     },
 
-    shell:
+    // Generate documentation
+    jsdoc:
     {
-      // Generate the Kurento Javascript client
-      kmd: {
-        command: [
-          'mkdir -p ./lib',
-          'kurento-module-creator --delete'
-          +' --templates node_modules/kurento-client/templates'
-          +' --deprom node_modules/kurento-client-core/src'
-          +' --deprom node_modules/kurento-client-elements/src'
-          +' --deprom node_modules/kurento-client-filters/src'
-          +' --rom ./src --codegen ./lib'
-        ].join('&&')
+      all:
+      {
+        src: [
+          'README.md',
+          'lib/**/*.js',
+          'test/*.js'
+        ],
+        dest: 'doc/jsdoc'
       }
     },
 
@@ -139,7 +124,44 @@ module.exports = function(grunt)
           ]
         }
       }
-    }  });
+    },
+
+    // Generate bower.json file from package.json data
+    sync:
+    {
+      bower:
+      {
+        options:
+        {
+          sync: [
+            'name', 'description', 'license', 'keywords', 'homepage',
+            'repository'
+          ],
+          overrides: {
+            authors: (pkg.author ? [pkg.author] : []).concat(pkg.contributors || []),
+            ignore: ['doc/', 'lib/', 'Gruntfile.js', 'package.json'],
+            main: DIST_DIR+'/<%= pkg.name %>.js'
+          }
+        }
+      }
+    },
+
+    shell:
+    {
+      // Generate the Kurento Javascript client
+      kmd: {
+        command: [
+          'mkdir -p ./lib',
+          'kurento-module-creator --delete'
+          +' --templates node_modules/kurento-client/templates'
+          +' --deprom node_modules/kurento-client-core/src'
+          +' --deprom node_modules/kurento-client-elements/src'
+          +' --deprom node_modules/kurento-client-filters/src'
+          +' --rom ./src --codegen ./lib'
+        ].join('&&')
+      }
+    }
+  });
 
   // Load plugins
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -148,8 +170,9 @@ module.exports = function(grunt)
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-jsdoc');
+  grunt.loadNpmTasks('grunt-npm2bower-sync');
 
   // Alias tasks
   grunt.registerTask('generate', ['path-check:generate plugin', 'browserify']);
-  grunt.registerTask('default',  ['clean', 'jsdoc', 'generate']);
+  grunt.registerTask('default',  ['clean', 'jsdoc', 'generate', 'sync:bower']);
 };

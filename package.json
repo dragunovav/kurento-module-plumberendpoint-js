@@ -9,9 +9,6 @@
   "scripts": {
     "prepublish": "node scripts/prepublish"
   },
-  "peerDependencies": {
-    "kurento-client": "Kurento/kurento-client-js#develop"
-  },
   "dependencies": {
     "es6-promise": "^2.0.0",
     "inherits": "^2.0.1",
@@ -27,7 +24,9 @@
     "grunt-cli": "~0.1.13",
     "grunt-jsdoc": "~0.5.7",
     "grunt-npm2bower-sync": "^0.4.0",
+    "jsonfile": "^2.0.0",
     "kurento-client": "Kurento/kurento-client-js#develop",
+    "merge": "^1.2.0",
     "minifyify": "^4.4.0",
     "grunt-contrib-clean": "~0.6.0",
     "grunt-path-check": "^0.9.3",
@@ -38,5 +37,8 @@
   "author": "Kurento <info@kurento.com> (http://kurento.org)",
   "bugs": {
     "email": "kurento@googlegroups.com"
+  },
+  "peerDependencies": {
+    "kurento-client": "Kurento/kurento-client-js#develop"
   }
 }
