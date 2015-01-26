@@ -1,6 +1,6 @@
 {
   "name": "kurento-module-plumberendpoint",
-  "version": "0.0.1-dev",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "keywords": [
