@@ -21,9 +21,6 @@
     "grunt-npm2bower-sync": "^0.8.1",
     "minifyify": "^6.4.0"
   },
-  "peerDependencies": {
-    "kurento-client": "Kurento/kurento-client-js"
-  },
   "keywords": [
     "Kurento",
     "module",
