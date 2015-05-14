@@ -84,10 +84,6 @@
               "type": "int"
             }
           ],
-          "return": {
-            "type": "boolean",
-            "doc": "If both :rom:cls:`PlumberEndpoints` could be connected"
-          },
           "name": "link",
           "doc": "Connect a control channel to the remote :rom:cls:`PlumberEndpoint`"
         }
