@@ -1,6 +1,6 @@
 {
   "name": "plumberendpoint",
-  "version": "6.1.0",
+  "version": "6.1.1-dev",
   "kurentoVersion": "^6.1.0",
   "imports": [
     {
@@ -27,13 +27,13 @@
       "js": {
         "nodeName": "kurento-module-plumberendpoint",
         "npmDescription": "",
-        "npmVersion": "6.1.0"
+        "npmVersion": "6.1.1"
       },
       "java": {
         "mavenGroupId": "org.kurento.module",
         "packageName": "org.kurento.module.plumberendpoint",
         "mavenArtifactId": "plumberendpoint",
-        "mavenVersion": "6.1.0"
+        "mavenVersion": "6.1.1-SNAPSHOT"
       }
     },
     "implementation": {
